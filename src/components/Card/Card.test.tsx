@@ -10,4 +10,11 @@ describe('Card Component', () => {
     expect(titleElement).toBeInTheDocument();
     expect(bodyElement).toBeInTheDocument();
   });
+
+  test('applies disabled styles when disabled', () => {
+    render(<Card title="Disabled Card" body="This card is disabled." disabled />);
+    const cardElement = screen.getByText(/Disabled Card/i).parentElement;
+    expect(cardElement).toHaveStyle('cursor: not-allowed');
+    expect(cardElement).toHaveStyle('opacity: 0.6');
+  });
 });

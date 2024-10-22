@@ -9,10 +9,13 @@ import TableFooter from './TableFooter';
 export default {
   title: 'Components/Table',
   component: Table,
+  argTypes: {
+    disabled: { control: 'boolean' }, // Add control for disabled state
+  },
 } as Meta;
 
-const Template: StoryFn = () => (
-  <Table>
+const Template: StoryFn = (args) => (
+  <Table disabled={args.disabled}>
     <thead>
       <TableRow>
         <TableHeader>Name</TableHeader>
@@ -38,3 +41,11 @@ const Template: StoryFn = () => (
 );
 
 export const Default = Template.bind({});
+Default.args = {
+  disabled: false, // Default state
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true, // Disabled state
+};

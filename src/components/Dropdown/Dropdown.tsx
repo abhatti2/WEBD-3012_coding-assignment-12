@@ -2,16 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { DropdownProps } from './Dropdown.types';
 
-const StyledSelect = styled.select`
+const StyledSelect = styled.select<{ disabled?: boolean }>`
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ disabled }) => (disabled ? '#ccc' : '#007BFF')};
   border-radius: 4px;
-  background-color: white;
-  color: #333;
+  background-color: ${({ disabled }) => (disabled ? '#f0f0f0' : 'white')};
+  color: ${({ disabled }) => (disabled ? '#999' : '#333')};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
 
-const Dropdown: React.FC<DropdownProps> = ({ options, onChange }) => (
-  <StyledSelect onChange={(e) => onChange(e.target.value)}>
+const Dropdown: React.FC<DropdownProps> = ({ options, onChange, disabled = false }) => (
+  <StyledSelect disabled={disabled} onChange={(e) => onChange(e.target.value)}>
     {options.map((option, index) => (
       <option key={index} value={option.value}>
         {option.label}

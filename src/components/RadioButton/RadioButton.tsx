@@ -2,16 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { RadioButtonProps } from './RadioButton.types';
 
-const StyledRadioButton = styled.input`
+const StyledRadioButton = styled.input<{ disabled?: boolean }>`
   margin-right: 8px;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
 `;
 
-const StyledLabel = styled.label`
+const StyledLabel = styled.label<{ disabled?: boolean }>`
   font-size: 16px;
-  color: #333;
+  color: ${({ disabled }) => (disabled ? '#999' : '#333')};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
 
-const RadioButton: React.FC<RadioButtonProps> = ({ label, value, name, checked, onChange }) => (
+const RadioButton: React.FC<RadioButtonProps> = ({ label, value, name, checked, onChange, disabled = false }) => (
   <div>
     <StyledRadioButton
       type="radio"
@@ -19,8 +22,9 @@ const RadioButton: React.FC<RadioButtonProps> = ({ label, value, name, checked, 
       name={name}
       checked={checked}
       onChange={(e) => onChange(e.target.value)}
+      disabled={disabled}
     />
-    <StyledLabel>{label}</StyledLabel>
+    <StyledLabel disabled={disabled}>{label}</StyledLabel>
   </div>
 );
 

@@ -23,4 +23,17 @@ describe('Dropdown Component', () => {
     fireEvent.change(screen.getByRole('combobox'), { target: { value: '2' } });
     expect(onChangeMock).toHaveBeenCalledWith('2');
   });
+
+  test('does not allow interaction when disabled', () => {
+    const onChangeMock = jest.fn();
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+    render(<Dropdown options={options} onChange={onChangeMock} disabled />);
+    const selectElement = screen.getByRole('combobox');
+    expect(selectElement).toBeDisabled();
+    fireEvent.change(selectElement, { target: { value: '2' } });
+    expect(onChangeMock).not.toHaveBeenCalled();
+  });
 });

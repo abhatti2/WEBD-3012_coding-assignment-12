@@ -18,4 +18,19 @@ describe('Table Component', () => {
     const cellElement = screen.getByText(/Test Cell/i);
     expect(cellElement).toBeInTheDocument();
   });
+
+  test('applies disabled styles when disabled', () => {
+    render(
+      <Table disabled>
+        <tbody>
+          <TableRow>
+            <TableCell>Disabled Cell</TableCell>
+          </TableRow>
+        </tbody>
+      </Table>
+    );
+    const tableElement = screen.getByText(/Disabled Cell/i).closest('table');
+    expect(tableElement).toHaveStyle('opacity: 0.5');
+    expect(tableElement).toHaveStyle('pointer-events: none');
+  });
 });

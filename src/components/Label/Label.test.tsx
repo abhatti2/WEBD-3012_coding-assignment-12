@@ -8,4 +8,11 @@ describe('Label Component', () => {
     const labelElement = screen.getByText(/Test Label/i);
     expect(labelElement).toBeInTheDocument();
   });
+
+  test('applies disabled styles when disabled', () => {
+    render(<Label text="Disabled Label" disabled />);
+    const labelElement = screen.getByText(/Disabled Label/i);
+    expect(labelElement).toHaveStyle('color: #999');
+    expect(labelElement).toHaveStyle('cursor: not-allowed');
+  });
 });

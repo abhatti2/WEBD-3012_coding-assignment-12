@@ -6,4 +6,5 @@ export interface DropdownOption {
 export interface DropdownProps {
   options: DropdownOption[];
   onChange: (value: string) => void;
+  disabled?: boolean; // Adding the disabled prop
 }

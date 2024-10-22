@@ -4,4 +4,5 @@ export interface RadioButtonProps {
   name: string;
   checked: boolean;
   onChange: (value: string) => void;
+  disabled?: boolean; // Add the disabled prop
 }

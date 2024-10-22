@@ -11,6 +11,7 @@ export default {
     alt: { control: 'text' },
     width: { control: 'text' },
     height: { control: 'text' },
+    disabled: { control: 'boolean' }, // Add control for disabled state
   },
 } as Meta;
 
@@ -22,4 +23,14 @@ Default.args = {
   alt: 'Placeholder Image',
   width: '400px',
   height: '200px',
+  disabled: false, // Default state
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  src: 'https://via.placeholder.com/400x200',
+  alt: 'Disabled Image',
+  width: '400px',
+  height: '200px',
+  disabled: true, // Disabled state
 };

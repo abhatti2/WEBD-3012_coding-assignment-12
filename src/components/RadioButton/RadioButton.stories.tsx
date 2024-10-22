@@ -11,6 +11,7 @@ export default {
     value: { control: 'text' },
     name: { control: 'text' },
     checked: { control: 'boolean' },
+    disabled: { control: 'boolean' }, // Add control for disabled state
     onChange: { action: 'changed' },
   },
 } as Meta;
@@ -32,4 +33,14 @@ Default.args = {
   value: 'option1',
   name: 'exampleGroup',
   checked: false,
+  disabled: false, // Default state
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  label: 'Disabled Option',
+  value: 'disabledOption',
+  name: 'exampleGroup',
+  checked: false,
+  disabled: true, // Disabled state
 };

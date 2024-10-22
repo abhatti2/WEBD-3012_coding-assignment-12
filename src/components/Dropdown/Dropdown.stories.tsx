@@ -8,6 +8,7 @@ export default {
   component: Dropdown,
   argTypes: {
     options: { control: 'object' },
+    disabled: { control: 'boolean' }, // Add control for disabled state
     onChange: { action: 'changed' },
   },
 } as Meta;
@@ -21,4 +22,15 @@ Default.args = {
     { label: 'Option 2', value: '2' },
     { label: 'Option 3', value: '3' },
   ],
+  disabled: false, // Default state
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  options: [
+    { label: 'Option 1', value: '1' },
+    { label: 'Option 2', value: '2' },
+    { label: 'Option 3', value: '3' },
+  ],
+  disabled: true, // Disabled state
 };

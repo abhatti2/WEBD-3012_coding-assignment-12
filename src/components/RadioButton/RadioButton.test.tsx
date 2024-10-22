@@ -15,4 +15,13 @@ describe('RadioButton Component', () => {
     fireEvent.click(screen.getByLabelText(/Test Radio/i));
     expect(onChangeMock).toHaveBeenCalledWith('test');
   });
+
+  test('does not allow interaction when disabled', () => {
+    const onChangeMock = jest.fn();
+    render(<RadioButton label="Disabled Radio" value="disabled" name="group1" checked={false} onChange={onChangeMock} disabled />);
+    const radioButtonElement = screen.getByLabelText(/Disabled Radio/i);
+    expect(radioButtonElement).toBeDisabled();
+    fireEvent.click(radioButtonElement);
+    expect(onChangeMock).not.toHaveBeenCalled();
+  });
 });
